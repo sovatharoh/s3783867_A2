@@ -15,7 +15,7 @@ public class Product {
 	}
 	
 	public void setName(String name) {
-		if(name == null) 
+		if(name == null || name.isEmpty()) 
 		{
 			this.name = "N/A";
 		}else 
@@ -44,6 +44,20 @@ public class Product {
 		StringBuilder sb = new StringBuilder();
 		sb.append(name + ":" + weight + ":" + cost);
 		return sb.toString();
+	}
+	public String getName()
+	{
+		return name;
+	}
+	
+	public double getWeight()
+	{
+		return weight;
+	}
+	
+	public double getCost()
+	{
+		return cost;
 	}
 	
 }

@@ -5,39 +5,50 @@ public class Customer {
 	private String lastName;
 	private String streetNo;
 	private Address address;
+	private Address altAddress;
 
 	public Customer(String firstName, String lastName, Address address) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
+		if(checkName(firstName)) {
+			this.firstName = firstName;
+		} else {
+			this.firstName = "N/A";
+		}
+		if(checkName(lastName)) {
+			this.lastName = lastName;
+		} else {
+			this.lastName = "N/A";
+		}
+		this.altAddress = new Address("None");
+		
 	}
 	
-		public void setFirstname(String firstName) {
-			if(firstName == null) 
+	
+	public Customer(String firstName, String lastName, Address address, Address altAddress) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.altAddress = altAddress;
+	}
+		public boolean checkName(String name) {
+			if(firstName == null || lastName == null) 
 			{
-				this.firstName = "N/A";
+				return false;
 			}else 
 			{
-				this.firstName = firstName;
-			}
-		}
-
-		public void setLastname(String lastName) {
-			if(lastName == null) 
-			{
-				this.lastName = "N/A";
-			}else 
-			{
-				this.lastName = lastName;
+				return true;
 			}
 		}
 		
-		//public void setAddress(Address address) {
-			//if(address == null) {
-				//this.address = "N/A";
-			//}else {
-				//this.address = address;
-			//}
-		//}
-
+		public void setAltAddress(Address altAddress) {
+			this.altAddress = altAddress;
+		}
+		
+		public String toString() {
+			StringBuilder sb = new StringBuilder();
+			sb.append(firstName + ":" + lastName + ":" + address + ":" + altAddress);
+			return sb.toString();
+		}
 }
