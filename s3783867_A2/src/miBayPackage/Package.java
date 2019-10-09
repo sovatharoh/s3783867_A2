@@ -24,7 +24,7 @@ public class Package {
 		if(products != null) {
 			for(int i = 0; i< products.length; i++) {
 				if(products[i] != null) {
-					if(products[i].getName() != product.getName() || products[i].getName() != product.getName() || 
+					if(!(products[i].getName().equals(product.getName())) || !(products[i].getName().equals(product.getName())) || 
 							products[i].getCost() != product.getCost()) {
 						valid = true;
 					}
@@ -51,6 +51,18 @@ public class Package {
 		return false;
 	}
 	public boolean removeProduct(Product product) {
-		
+		if(products != null) {
+			Product[] temp = new Product[products.length - 1];
+			int j = 0;
+			for(int i = 0; i < products.length; i++) {
+				if(products[i] != null && !(products[i].equals(product))) {
+					temp[j] = products[i];
+					j++;
+				}
+			}
+			products = temp;
+			return true;
+		}
+		return false;
 	}
 }

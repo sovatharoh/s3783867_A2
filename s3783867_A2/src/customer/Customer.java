@@ -3,7 +3,6 @@ package customer;
 public class Customer {
 	private String firstName;
 	private String lastName;
-	private String streetNo;
 	private Address address;
 	private Address altAddress;
 
@@ -22,12 +21,11 @@ public class Customer {
 		} else {
 			this.lastName = "N/A";
 		}
-		this.altAddress = new Address("None");
 		
-		if(checkAddress(address)) {
+		if(checkNullAddress(address)) {
 			this.address = address;
 		} else {
-			this.address = new Address("N/A");
+			this.address = new Address("N/A", "", "", "");
 		}
 	}
 	
@@ -48,16 +46,7 @@ public class Customer {
 			this.lastName = "N/A";
 		}
 		
-		if(checkAddress(address)) {
-			this.address = address;
-		} else {
-			this.address = new Address("N/A");
-		}
-		if(checkAddress(altAddress)) {
-			this.altAddress = altAddress;
-		} else {
-			this.altAddress = new Address("N/A");
-		}
+		
 	}
 		public boolean checkName(String name) {
 			if(firstName == null || lastName == null || firstName.isEmpty() || lastName.isEmpty()) 
@@ -68,21 +57,21 @@ public class Customer {
 				return true;
 			}
 		}
-		
-		public boolean checkAddress(Address TemporaryAddress) {
-			if(address == null || altAddress == null || address == new Address("") || altAddress == new Address("")) {
+		public boolean checkNullAddress(Address tempAddress) {
+			if(tempAddress == null) {
 				return false;
-			}else 
+			} else
 			{
 				return true;
 			}
 		}
+		
 		public void setAltAddress(Address altAddress) {
 			this.altAddress = altAddress;
 		}
 		
 		public void switchPreferredAddress() {
-			if(altAddress != null && altAddress != new Address("N/A") && altAddress != new Address("None")) {
+			if(altAddress != null) {
 			Address TempAddress = address;
 			this.address = altAddress;
 			this.altAddress = TempAddress;
@@ -92,14 +81,14 @@ public class Customer {
 			
 		}
 		
-		public String getCustomerName() {
-			String fullName = firstName + lastName;
-			return fullName;
-		}
-		
-		public String toString() {
+		public String getDetails() {
 			StringBuilder sb = new StringBuilder();
-			sb.append(firstName + ":" + lastName + ":" + address + ":" + altAddress);
+			sb.append(String.format("%-15s %s\n", "First Name:", firstName));
+			sb.append(String.format("%-15s %s\n", "Last Name:", lastName));
+			sb.append(String.format("%-15s %s\n", "Address:", address));
+			if(altAddress != null) {
+			sb.append(String.format("%-15s %s\n", "Alternate Address:", altAddress));
+			}
 			return sb.toString();
 		}
 }

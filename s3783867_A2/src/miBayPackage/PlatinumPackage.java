@@ -12,7 +12,14 @@ public class PlatinumPackage extends Package{
 	}
 	
 	public boolean updateMemberNumer(String memberNumber) {
-		return false;
-		
+		if(this.memberNumber != null) {
+			if(memberNumber.length() == 10 && memberNumber.matches("[A-Z][0-9][A-Z][0-9][A-Z][0-9][A-Z][0-9][A-Z][0-9]")){
+				this.memberNumber = memberNumber;
+			}
+		}
+		if(this.memberNumber == null) {
+			return false;
+		}
+		return true;
 	}
 }
