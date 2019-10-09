@@ -6,30 +6,51 @@ import product.Product;
 public class Package {
 	private Customer customer;
 	private Product product;
-	private Product[] productArr;
+	private Product[] products = new Product[10];
 
 	public Package(Customer customer, Product product) {
 		this.customer = customer;
-		productArr[0] = product;
+		products[0] = product;
+	}
+	
+	public Package(Customer customer, Product[] products) {
+		this.customer = customer;
+		this.products = products;
 	}
 	
 	
 	public boolean addProduct(Product product) {
-			return addProduct(product.getName(), product.getWeight(), product.getCost());
-	}
-	public boolean addProduct(String name, double weight, double cost) {
-		for(int i = 0; i < productArr.length; i++)
-		{
-			if(productArr[i] == null)
-			{
-				productArr[i] = new Product(name, weight, cost);
-				return true;
+		boolean valid = false;
+		if(products != null) {
+			for(int i = 0; i< products.length; i++) {
+				if(products[i] != null) {
+					if(products[i].getName() != product.getName() || products[i].getName() != product.getName() || 
+							products[i].getCost() != product.getCost()) {
+						valid = true;
+					}
+			    }
 			}
 		}
+		
+		if(valid)
+			if(products !=null){
+			Product[] temp = new Product[products.length + 1];
+			for(int i = 0; i < products.length; i++) {
+				temp[i] = products[i];
+			}
+			temp[products.length -1] = product;
+			products = temp;
+			return true;
+		}
+		//if(products == null) {
+			//Product[] temp = new Product[1];
+			//temp[0] = product;
+			//products = temp;
+			//return true;
+		//}
 		return false;
-
 	}
 	public boolean removeProduct(Product product) {
-		return true;
+		
 	}
 }

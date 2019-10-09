@@ -9,12 +9,12 @@ public class Product {
 		this.name = name;
 		this.weight = weight;
 		this.cost = cost;
-		setName(name);
-		setWeight(weight);
-		setCost(cost);
+		checkName(name);
+		checkWeight(weight);
+		checkCost(cost);
 	}
 	
-	public void setName(String name) {
+	public void checkName(String name) {
 		if(name == null || name.isEmpty()) 
 		{
 			this.name = "N/A";
@@ -24,7 +24,7 @@ public class Product {
 		}
 	}
 	
-	public void setWeight(double weight) {
+	public void checkWeight(double weight) {
 		if(weight<=0) {
 			this.weight = -1.0;
 		}else {
@@ -32,7 +32,7 @@ public class Product {
 		}
 	}
 	
-	public void setCost(double cost) {
+	public void checkCost(double cost) {
 		if(cost<=1) {
 			this.cost = -1.0;
 		}else {
@@ -45,6 +45,8 @@ public class Product {
 		sb.append(name + ":" + weight + ":" + cost);
 		return sb.toString();
 	}
+	
+	//required getters
 	public String getName()
 	{
 		return name;

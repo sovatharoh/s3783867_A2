@@ -11,8 +11,8 @@ public class Driver {
 		testProduct.testInvalid();
 		
 		TestCustomer testCustomer = new TestCustomer();
-		testCustomer.testValid();
-		
+		testCustomer.testValidCustomer();
+		testCustomer.testInvalidCustomer();
 
 	}
 
