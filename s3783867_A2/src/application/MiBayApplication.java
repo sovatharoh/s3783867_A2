@@ -34,6 +34,10 @@ public class MiBayApplication {
 	public Customer[] getCustomers() {
 		return customers;
 	}
+	
+	public Product[] getProductArr() {
+		return productArr;
+	}
 	public void showMenu() {
 		menu.run();
 	}

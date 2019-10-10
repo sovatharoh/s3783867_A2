@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import customer.Address;
 import customer.Customer;
+import product.Product;
 
 public class Menu {
 	private Scanner console = new Scanner(System.in);
@@ -105,15 +106,36 @@ public class Menu {
 			}
 	
 	private void createPackage() {
-		System.out.println("Please choose a customer from the list:");
 		Customer[] customers = app.getCustomers();
-		for(int i = 0; i < customers.length; i++) {
-			if(customers[i] != null) {
-			System.out.println(String.format("%-15s %s\n", i+1 + ":\n", customers[i].getDetails()));
+		if(customers[0] == null) {
+			System.out.println("Sorry no customers available.");
+			return;
+		} else {
+			System.out.println("Please choose a customer from the list:");
+			for(int i = 0; i < customers.length; i++) {
+				if(customers[i] != null) {
+					System.out.println(String.format("%-15s %s\n", i+1 + ":\n", 
+							customers[i].getFirstName() + " " + customers[i].getLastName()));
+				}
 			}
 		}
+		int custResponse = console.nextInt();
 		
-	}
+		Product[] products = app.getProductArr();
+		if(products[0] == null) {
+			System.out.println("Sorry no products available.");
+			return;
+		} else {
+			System.out.println("Please choose a product from the list:");
+			for(int i = 0; i < products.length; i++) {
+				if(products[i] != null) {
+					System.out.println(String.format("%-15s %s\n", i+1 + ":\n", 
+							products[i].getName()));
+				}
+			}
+		}
+		System.out.println("Would you like to add another product?	(Y/N)");
+}
 	/*
 	 * Prints the menu.
 	 */
