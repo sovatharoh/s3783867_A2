@@ -9,9 +9,14 @@ public class PlatinumPackage extends Package{
 	public PlatinumPackage(Customer customer, Product product, String memberNumber) {
 		super(customer, product);
 		this.memberNumber = memberNumber;
+		if(checkMemberNumber(memberNumber)) {
+			this.memberNumber = memberNumber;
+		} else {
+			this.memberNumber = "N/A";
+		}
 	}
 	
-	public boolean updateMemberNumer(String memberNumber) {
+	public boolean updateMemberNumber(String memberNumber) {
 		if(this.memberNumber != null) {
 			if(memberNumber.length() == 10 && memberNumber.matches("[A-Z][0-9][A-Z][0-9][A-Z][0-9][A-Z][0-9][A-Z][0-9]")){
 				this.memberNumber = memberNumber;
@@ -21,6 +26,15 @@ public class PlatinumPackage extends Package{
 			return false;
 		}
 		return true;
+	}
+	
+	public boolean checkMemberNumber(String memberNumber) {
+		if(memberNumber == null || memberNumber.length() == 10 || memberNumber.isEmpty() ||
+				!(memberNumber.matches("[A-Z][0-9][A-Z][0-9][A-Z][0-9][A-Z][0-9][A-Z][0-9]"))){
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	public String getDetails() {

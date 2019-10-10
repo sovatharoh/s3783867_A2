@@ -19,6 +19,7 @@ public class Driver {
 		
 		TestPackage testPackage = new TestPackage();
 		testPackage.testPackageValid();
+		testPackage.testInvalidPackage();
 		
 		MiBayApplication app = new MiBayApplication();
 		app.showMenu();

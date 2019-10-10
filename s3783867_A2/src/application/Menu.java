@@ -3,6 +3,7 @@ package application;
 import java.util.Scanner;
 
 import customer.Address;
+import customer.Customer;
 
 public class Menu {
 	private Scanner console = new Scanner(System.in);
@@ -38,6 +39,11 @@ public class Menu {
 				case "AC":
 					addCustomer();
 					break;
+				case "AP":
+					addProduct();
+					break;
+				case "PP":
+					createPackage();
 				case "EX":
 					//System.out.println("Exiting Program ... Goodbye!");
 					break;
@@ -55,14 +61,12 @@ public class Menu {
 	 */
 	private void addCustomer()
 	{
-		String id = "", firstName, lastName, address;
-	
 			// Get details required for creating a customer.
 			System.out.print("Enter First Name: ");
-			firstName = console.nextLine();
+			String firstName = console.nextLine();
 
 			System.out.print("Enter Last Name: ");
-			lastName = console.nextLine();
+			String lastName = console.nextLine();
 
 			System.out.print("Enter street number: ");
 			String streetNumber = console.nextLine();
@@ -80,9 +84,36 @@ public class Menu {
 			String result = app.createCustomer(firstName, lastName, tempAddress);
 			System.out.println(result);
 			}
-		
 	
+	/*
+	 * Creates product in the system.
+	 */
+	private void addProduct()
+	{
+			// Get details required for creating a product.
+			System.out.print("Enter Product Name: ");
+			String name = console.nextLine();
 
+			System.out.print("Enter Weight: ");
+			double weight = console.nextDouble();
+
+			System.out.print("Enter Cost: ");
+			double cost = console.nextDouble();
+	
+			String result = app.createProduct(name, weight, cost);
+			System.out.println(result);
+			}
+	
+	private void createPackage() {
+		System.out.println("Please choose a customer from the list:");
+		Customer[] customers = app.getCustomers();
+		for(int i = 0; i < customers.length; i++) {
+			if(customers[i] != null) {
+			System.out.println(String.format("%-15s %s\n", i+1 + ":\n", customers[i].getDetails()));
+			}
+		}
+		
+	}
 	/*
 	 * Prints the menu.
 	 */
@@ -98,10 +129,6 @@ public class Menu {
 		System.out.printf("%-30s %s\n", "Seed Data", "SA");
 		System.out.printf("%-30s %s\n", "Exit Program", "EX");
 		System.out.println("\nEnter your selection: ");
-	}
-	
-	public void getMenu() {
-	
 	}
 }
 

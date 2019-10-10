@@ -30,7 +30,36 @@ public class TestPackage {
 		platP1.addProduct(prod2);
 		System.out.println("Test Valid Add Product to Platinum Package");
 		System.out.println(platP1.getDetails());
+		System.out.println("Test Valid Remove Product to Platinum Package");
+		platP1.removeProduct(prod2);
+		System.out.println(platP1.getDetails());
+		platP1.updateMemberNumber("D1B5M5S8Y6");
+		System.out.println("Test Valid Update Member Number");
+		System.out.println(platP1.getDetails());
+	}
+	
+	public void testInvalidPackage() {
+		Address addr1 = new Address(null, null, null, null);
+		Customer cust1 = new Customer(null, null, null);
+		Product prod1 = new Product(null, 0, 0);
+		Package pack1 = new Package(cust1, prod1);
+		System.out.println("Test Null Package");
+		System.out.println(pack1.getDetails());
 		
+		PlatinumPackage plat1 = new PlatinumPackage(cust1, prod1, "D0B4M4S7Y");
+		PlatinumPackage plat2 = new PlatinumPackage(cust1, prod1, null);
+		PlatinumPackage plat3 = new PlatinumPackage(cust1, prod1, "D0B4M4S7Y5A");
+		PlatinumPackage plat4 = new PlatinumPackage(cust1, prod1, "D0BM44S7Y5");
+		PlatinumPackage plat5 = new PlatinumPackage(cust1, prod1, "D$B4M4S7Y5");
+		System.out.println("Test Invalid Member Number");
+		System.out.println(plat1.getDetails());
+		System.out.println(plat2.getDetails());
+		System.out.println(plat3.getDetails());
+		System.out.println(plat4.getDetails());
+		System.out.println(plat5.getDetails());
 		
+		plat1.updateMemberNumber("D0B4M4S7Y5A");
+		System.out.println("Test Invalid Update Member Number");
+		System.out.println(plat1.getDetails());
 	}
 }
