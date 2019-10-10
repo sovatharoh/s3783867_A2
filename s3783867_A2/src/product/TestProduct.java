@@ -7,9 +7,9 @@ public class TestProduct {
 		Product p3 = new Product("Bread", 150.00, 3.00);
 		
 		System.out.println("Test Valid Product");
-		System.out.println(p1.toString());
-		System.out.println(p2.toString());
-		System.out.println(p3.toString());
+		System.out.println(p1.getDetails());
+		System.out.println(p2.getDetails());
+		System.out.println(p3.getDetails());
 	}
 	
 	public void testInvalid() {
@@ -19,9 +19,9 @@ public class TestProduct {
 		Product p7 = new Product("Bread", 150.00, 0);
 		
 		System.out.println("Test Invalid Product");
-		System.out.println(p4.toString());
-		System.out.println(p5.toString());
-		System.out.println(p6.toString());
-		System.out.println(p7.toString());
+		System.out.println(p4.getDetails());
+		System.out.println(p5.getDetails());
+		System.out.println(p6.getDetails());
+		System.out.println(p7.getDetails());
 	}
 }

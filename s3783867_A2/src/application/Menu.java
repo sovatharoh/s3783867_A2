@@ -2,8 +2,16 @@ package application;
 
 import java.util.Scanner;
 
+import customer.Address;
+
 public class Menu {
 	private Scanner console = new Scanner(System.in);
+	private MiBayApplication app;
+	
+	public Menu(MiBayApplication app) {
+		this.app = app;
+	}
+
 	/*
 	 * Runs the menu in a loop until the user decides to exit the system.
 	 */
@@ -57,18 +65,23 @@ public class Menu {
 			lastName = console.nextLine();
 
 			System.out.print("Enter street number: ");
-			int streetNo = Integer.parseInt(console.nextLine());
+			String streetNumber = console.nextLine();
 
-			System.out.print("Enter street name");
+			System.out.print("Enter street name: ");
 			String streetName = console.nextLine();
-
-				
-			} else
-			{
-				System.out.println("Error - Already exists in the system");
+			
+			System.out.println("Enter suburb: ");
+			String suburb = console.nextLine();
+			
+			System.out.println("Enter postcode: ");
+			String postcode = console.nextLine();
+			
+			Address tempAddress = new Address(streetNumber, streetName, suburb, postcode);
+			String result = app.createCustomer(firstName, lastName, tempAddress);
+			System.out.println(result);
 			}
-		}
-	}
+		
+	
 
 	/*
 	 * Prints the menu.
@@ -85,6 +98,10 @@ public class Menu {
 		System.out.printf("%-30s %s\n", "Seed Data", "SA");
 		System.out.printf("%-30s %s\n", "Exit Program", "EX");
 		System.out.println("\nEnter your selection: ");
+	}
+	
+	public void getMenu() {
+	
 	}
 }
 

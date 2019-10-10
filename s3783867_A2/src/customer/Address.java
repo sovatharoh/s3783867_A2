@@ -23,14 +23,7 @@ public class Address {
 		public void setPostcode(String postcode){
 			if(postcode == null || postcode.isEmpty()) {
 				this.postcode = "N/A";
-			}
-			int pLength = postcode.length();
-			char pInitial = postcode.charAt(0);
-			if(pLength != 4 || postcode.matches(".*[1-9].*") == false || Character.getNumericValue(pInitial) > 8 || 
-					Character.getNumericValue(pInitial) < 1)
-			{
-				this.postcode = "N/A";
-			} else
+			}else
 			{
 				this.postcode = postcode;
 			}
@@ -66,6 +59,9 @@ public class Address {
 			}
 		}
 	public String toString() {
+		if(streetNumber.isEmpty()) {
+			return "";
+		}
 		return streetNumber + " " + streetName + " " + suburb + " " + postcode;
 	}
 }

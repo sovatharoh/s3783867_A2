@@ -39,11 +39,17 @@ public class Product {
 			this.cost = cost;
 		}
 	}
+
+	public String getDetails() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("%-15s %s\n", "Product Name:", name));
+		sb.append(String.format("%-15s %s\n", "Weight:", weight));
+		sb.append(String.format("%-15s %s\n", "Cost: $", cost));
+		return sb.toString();
+	}
 	
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(name + ":" + weight + ":" + cost);
-		return sb.toString();
+		return name + " " + weight + " " + cost;
 	}
 	
 	//required getters

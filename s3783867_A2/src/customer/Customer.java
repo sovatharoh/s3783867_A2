@@ -4,7 +4,7 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 	private Address address;
-	private Address altAddress;
+	private Address altAddress = null;
 
 	public Customer(String firstName, String lastName, Address address) {
 		this.firstName = firstName;
@@ -48,6 +48,7 @@ public class Customer {
 		
 		
 	}
+		
 		public boolean checkName(String name) {
 			if(firstName == null || lastName == null || firstName.isEmpty() || lastName.isEmpty()) 
 			{
@@ -90,5 +91,15 @@ public class Customer {
 			sb.append(String.format("%-15s %s\n", "Alternate Address:", altAddress));
 			}
 			return sb.toString();
+		}
+		
+		public String toString() {
+			return firstName + " " + lastName + " " + address + " " + altAddress;
+		}
+		public String getFirstName() {
+			return firstName;
+		}
+		public String getLastName() {
+			return lastName;
 		}
 }

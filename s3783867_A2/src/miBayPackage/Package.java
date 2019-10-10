@@ -6,7 +6,7 @@ import product.Product;
 public class Package {
 	private Customer customer;
 	private Product product;
-	private Product[] products = new Product[10];
+	private Product[] products = new Product[1];
 
 	public Package(Customer customer, Product product) {
 		this.customer = customer;
@@ -38,16 +38,11 @@ public class Package {
 			for(int i = 0; i < products.length; i++) {
 				temp[i] = products[i];
 			}
-			temp[products.length -1] = product;
-			products = temp;
+			temp[products.length] = product;
+			this.products = temp;
+			System.out.println(temp[1].getDetails());
 			return true;
 		}
-		//if(products == null) {
-			//Product[] temp = new Product[1];
-			//temp[0] = product;
-			//products = temp;
-			//return true;
-		//}
 		return false;
 	}
 	public boolean removeProduct(Product product) {
@@ -65,4 +60,39 @@ public class Package {
 		}
 		return false;
 	}
+	
+	public String getDetails() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("%-15s %s\n", "Customer:\n ", customer.getDetails()));
+		sb.append(String.format("%-15s ", "Product:\n "));
+		for(int i = 0; i < products.length; i++) {
+			sb.append(String.format("%-15s %s\n", "Product:", products[i].getDetails()));
+		}
+		return sb.toString();
+	}
+	public String toString() {
+		return "Customer: " + customer + "\nProduct: " + product;
+	}
+	
+	public Customer getCustomer() {
+		return this.customer;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Product[] getProducts() {
+		return products;
+	}
+
+	public void setProducts(Product[] products) {
+		this.products = products;
+	}
+	
+	
 }

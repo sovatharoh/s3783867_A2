@@ -22,4 +22,18 @@ public class PlatinumPackage extends Package{
 		}
 		return true;
 	}
+	
+	public String getDetails() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("%-15s %s\n", "Customer:\n ", this.getCustomer().getDetails()));
+		sb.append(String.format("%-15s ", "Product:\n "));
+		for(int i = 0; i < this.getProducts().length; i++) {
+			sb.append(String.format("%-15s %s\n", "Product:", this.getProducts()[i].getDetails()));
+		}
+		sb.append(String.format("%-15s %s\n", "Member Number:\n ", memberNumber));
+		return sb.toString();
+	}
+	public String toString() {
+		return "Customer: " + this.getCustomer() + "\nProduct: " + this.getProduct();
+	}
 }
