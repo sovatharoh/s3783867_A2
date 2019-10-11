@@ -126,6 +126,9 @@ public class Menu {
 			System.out.println(result);
 			}
 	
+	/*
+	 * Creates package and platinum package in the system.
+	 */
 	private void createPackage() {
 		Customer[] customers = app.getCustomers();
 		printCustomerList();
@@ -187,27 +190,130 @@ public class Menu {
 			}
 			}while (!(input.equals("N")));
 		
+		String choice;
+		Product[] tempRemProdArr = new Product[15];
+		do
+		{
+			int tempRemProdCount = 0;
+			System.out.println("Would you like to remove a product? (Y/N)");
+			choice = console.nextLine().toUpperCase();
+
+			if (choice.length() != 1)
+			{
+				System.out.println("Error - selection must be Y/N");
+			} else
+			{
+				System.out.println();
+
+				switch (choice)
+				{
+				case "Y":
+					printProductList();
+					int productPos = console.nextInt() - 1;
+					tempRemProdArr[tempRemProdCount] = products[productPos];
+					tempRemProdCount++;
+					break;
+				case "N":
+					break;
+				default:
+					System.out.println("");
+				}
+			}
+			}while (!(choice.equals("N")));
+		
+		
 		System.out.println("Is this a Platinum Package? (Y/N)");
 		String platResponse = console.nextLine().toUpperCase();
 			if(platResponse.equals("Y")) {
 				System.out.println("Please input your member number:");
 				String memberNumber = console.nextLine();
-				app.createPlatPackage(customers[custResponse], products[prodResponse], memberNumber, date, tempProdArr);
+				app.createPlatPackage(customers[custResponse], products[prodResponse], memberNumber, date, tempProdArr, tempRemProdArr);
 				System.out.println(products[prodResponse].getName() + " was succesfully added to the order");
 			} else {
-				app.createPackage(customers[custResponse], products[prodResponse], date, tempProdArr);
+				app.createPackage(customers[custResponse], products[prodResponse], date, tempProdArr, tempRemProdArr);
 				System.out.println(products[prodResponse].getName() + " was succesfully added to the order");
 			}
 }
-	
+	/*
+	 * Displays all deliveries in either ascending or descending order depending on input.
+	 */
 	public void displayDeliveries() {
+		PlatinumPackage[] platArray = app.getPlatinumPackageArr();
+		miBayPackage.Package[] packArr = app.getPackagesArr();
+		String[] combineDetailArr = new String[30];
+		String[] combineLastNameArr = new String[30];
+		int spotCount = 0;
+		for(int i=0; i < platArray.length; i++) {
+			if(platArray[i] != null) {
+				combineDetailArr[spotCount] = platArray[i].getDetails();
+				combineLastNameArr[spotCount] = platArray[i].getCustomer().getLastName();
+				spotCount++;
+			}
+		}
+		for(int j=0; j < packArr.length; j++) {
+			if(packArr[j] != null) {
+				combineDetailArr[spotCount] = packArr[j].getDetails();
+				combineLastNameArr[spotCount] = packArr[j].getCustomer().getLastName();
+				spotCount++;
+			}
+		}
 		System.out.println("Enter sort order (A/D):");
 		String choice = console.nextLine().toUpperCase();
 		switch(choice) {
 			case "A":
-				
+				boolean swapped = false;
+				do {
+					swapped = false;
+					for(int i=0; i<(combineLastNameArr.length-1); i++) {
+						if(combineLastNameArr[i+1] != null) {
+							String name1 = combineLastNameArr[i];
+							String name2 = combineLastNameArr[i+1];
+							int compared = name1.compareTo(name2);
+							if(compared>0) {
+								String temp = combineLastNameArr[i+1];
+								String temp2 = combineDetailArr[i+1];
+								combineLastNameArr[i+1]=combineLastNameArr[i];
+								combineDetailArr[i+1]=combineDetailArr[i];
+								combineLastNameArr[i] = temp;
+								combineDetailArr[i] = temp2;
+								swapped = true;
+							}
+						}
+					}
+				}while((swapped));
+				break;
+			case "D":
+				boolean swappedD = false;
+				do {
+					swappedD = false;
+					for(int i=0; i<(combineLastNameArr.length-1); i++) {
+						if(combineLastNameArr[i+1] != null) {
+							String name1 = combineLastNameArr[i];
+							String name2 = combineLastNameArr[i+1];
+							int compared = name1.compareTo(name2);
+							if(compared<0) {
+								String temp = combineLastNameArr[i+1];
+								String temp2 = combineDetailArr[i+1];
+								combineLastNameArr[i+1]=combineLastNameArr[i];
+								combineDetailArr[i+1]=combineDetailArr[i];
+								combineLastNameArr[i] = temp;
+								combineDetailArr[i] = temp2;
+								swapped = true;
+							}
+						}
+					}
+				}while((swappedD));
+				break;
+					}
+		for(int i=0; i<combineDetailArr.length;i++) {
+			if(combineDetailArr[i] != null) {
+				System.out.println(combineDetailArr[i]);
+			}
 		}
 	}
+	/*
+	 * Searches and prints packages and platinum package with same date as input
+	 */
 	public void searchDeliveries() {
 		System.out.println("Enter Day:");
 		int day = console.nextInt();
@@ -238,7 +344,9 @@ public class Menu {
 		}
 		
 	}
-	
+	/*
+	 * Prints all created customers. Used in the create createPackage method
+	 */
 	public void printCustomerList() {
 		Customer[] customers = app.getCustomers();
 		if(customers[0] == null) {
@@ -255,7 +363,9 @@ public class Menu {
 		}
 		
 	}
-	
+	/*
+	 * Prints all created products. Used in the create createPackage method
+	 */
 	public void printProductList(){
 		Product[] products = app.getProductArr();
 		if(products[0] == null) {
@@ -280,7 +390,7 @@ public class Menu {
 
 		System.out.printf("%-30s %s\n", "Add Customer", "AC");
 		System.out.printf("%-30s %s\n", "Add Product", "AP");
-		System.out.printf("%-30s %s\n", "Prepere Order", "PP");
+		System.out.printf("%-30s %s\n", "Prepare Order", "PP");
 		System.out.printf("%-30s %s\n", "Display ALL Deliveries", "DA");
 		System.out.printf("%-30s %s\n", "Delivery Search", "DS");
 		System.out.printf("%-30s %s\n", "Seed Data", "SA");

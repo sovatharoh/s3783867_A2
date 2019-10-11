@@ -11,6 +11,7 @@ import product.TestProduct;
 public class Driver {
 
 	public static void main(String[] args) {
+		
 		TestCustomer testCustomer = new TestCustomer();
 		testCustomer.testValidCustomer();
 		testCustomer.testInvalidCustomer();
@@ -22,11 +23,12 @@ public class Driver {
 		TestPackage testPackage = new TestPackage();
 		testPackage.testPackageValid();
 		testPackage.testInvalidPackage();
-		Scanner scan = new Scanner(System.in);
 	
 		MiBayApplication app = new MiBayApplication();
 		app.showMenu();
 	
+		
+		
 	}
 
 }

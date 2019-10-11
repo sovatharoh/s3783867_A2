@@ -29,7 +29,9 @@ public class Address {
 		
 	}
 	
-	//validates and checks if postcode is null or matches the specification
+	/*
+	 * validates and checks if postcode is null or empty.
+	 */
 		public void setPostcode(String postcode){
 			if(postcode == null || postcode.isEmpty()) {
 				this.postcode = "N/A";
@@ -38,7 +40,9 @@ public class Address {
 				this.postcode = postcode;
 			}
 		}
-		//checks if streeno is null and replaces it with N/A
+		/*
+		 * validates and checks if street number is null or empty.
+		 */
 		public void setStreetNumber(String streetNumber) {
 			if(streetNumber == null || streetNumber.isEmpty()) 
 			{
@@ -48,7 +52,9 @@ public class Address {
 				this.streetNumber = streetNumber;
 			}
 		}
-		//checks if streetname is null and replaces it with N/A
+		/*
+		 * validates and checks if street name is null or empty.
+		 */
 		public void setStreetName(String streetName) {
 			if(streetName == null || streetName.isEmpty()) 
 			{
@@ -58,7 +64,9 @@ public class Address {
 				this.streetName = streetName;
 			}
 		}
-		//checks if suburb is null and replaces it with N/A
+		/*
+		 * validates and checks if suburb is null or empty.
+		 */
 		public void setSuburb(String suburb) {
 			if(suburb == null) 
 			{

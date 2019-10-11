@@ -31,7 +31,10 @@ public class MiBayApplication {
 	public MiBayApplication() {
 		this.menu = new Menu(this);
 	}
-
+	/*
+	 * Creates the customer using user input from Menu and stores it in an array.
+	 * Used when user chooses Add Customer (AC)
+	 */
 	public String createCustomer(String firstName, String lastName, Address address) 
 	{
 			customers[itemCountCust] = new Customer(firstName, lastName, address);
@@ -39,15 +42,22 @@ public class MiBayApplication {
 			return  customers[itemCountCust-1].getFirstName() +" "+ customers[itemCountCust-1].getLastName() + 
 					" was succesfully added to the system";
 	}
-	
+	/*
+	 * Creates the product using user input from Menu and stores it in an array.
+	 * Used when user chooses Add Product (AP)
+	 */
 	public String createProduct(String name, double weight, double cost) 
 	{
 			productArr[itemCountProd] = new Product(name, weight, cost);
 			itemCountProd++;
 			return  productArr[itemCountProd-1].getName() +" was succesfully added to the system";
 	}
-	
-	public void createPackage(Customer customer, Product product, DateTime date, Product[] tempProdArr) {
+	/*
+	 * Creates a package using user input from Menu and stores it in an array.
+	 * Used when user chooses Prepare Order PP, and creates a normal package.
+	 */
+	public void createPackage(Customer customer, Product product, DateTime date, 
+			Product[] tempProdArr, Product[] tempRemProdArr) {
 		packageArr[itemCountPack] = new Package(customer, product);
 		packageArr[itemCountPack].setDate(date);
 		for(int i=0; i < tempProdArr.length; i++) {
@@ -55,9 +65,19 @@ public class MiBayApplication {
 				packageArr[itemCountPack].addProduct(tempProdArr[i]);
 			}
 		}
+		for(int j=0; j < tempRemProdArr.length; j++) {
+			if(tempRemProdArr[j] != null) {
+				packageArr[itemCountPack].removeProduct(tempRemProdArr[j]);
+			}
+		}
 		itemCountPack++;
 	}
-	public void createPlatPackage(Customer customer, Product product, String memberNumber, DateTime date, Product[] tempProdArr) {
+	/*
+	 * Creates a package using user input from Menu and stores it in an array.
+	 * Used when user chooses Prepare Order PP, and creates a platinum package.
+	 */
+	public void createPlatPackage(Customer customer, Product product, String memberNumber, 
+			DateTime date, Product[] tempProdArr, Product[] tempRemProdArr) {
 		platPackage[itemCountPlat] = new PlatinumPackage(customer, product, memberNumber);
 		platPackage[itemCountPlat].setDate(date);
 		for(int i=0; i < tempProdArr.length; i++) {
@@ -65,8 +85,18 @@ public class MiBayApplication {
 				platPackage[itemCountPlat].addProduct(tempProdArr[i]);
 			}
 		}
+		for(int j=0; j < tempRemProdArr.length; j++) {
+			if(tempRemProdArr[j] != null) {
+				platPackage[itemCountPack].removeProduct(tempRemProdArr[j]);
+			}
+		}
 		itemCountPlat++;
 	}
+	/*
+	 * Creates a 3 hard-coded customers and 3 hard-coded products and stores them
+	 * in their respective arrays.
+	 * Used when user chooses Seed Data SA
+	 */
 	public boolean seedData()
 	{
 		for(int i = 0; i < customers.length; i++)
@@ -106,7 +136,9 @@ public class MiBayApplication {
 		itemCountProd++;
 		return true;
 	}
-	
+	/*
+	 * Required getters and setters
+	 */
 	public Customer[] getCustomers() {
 		return customers;
 	}

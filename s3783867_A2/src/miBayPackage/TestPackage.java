@@ -16,6 +16,9 @@ import product.Product;
 import utilities.DateTime;
 
 public class TestPackage {
+	/*
+	 * tests valid and invalid insantiation of packages
+	 */
 	public void testPackageValid() {
 		Address addr1 = new Address("1", "Test Street", "South Yarra", "3141");
 		Customer cust1 = new Customer("John", "Smith", addr1);

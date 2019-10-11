@@ -1,5 +1,15 @@
 package product;
-
+/**
+* <h1>Producte</h1>
+* <p><b>This class creates an product object  and
+*applies all the business rules and operations.
+*</b></p>
+* <p><b>References: None</b></p>
+*
+* @author Sovatharo Huy (s3783867)
+* @version 1.0
+* @since 2019-10-11
+*/
 public class Product {
 	private String name;
 	private double weight;
@@ -13,7 +23,9 @@ public class Product {
 		checkWeight(weight);
 		checkCost(cost);
 	}
-	
+	/*
+	 * validates and checks if name is null or empty.
+	 */
 	public void checkName(String name) {
 		if(name == null || name.isEmpty()) 
 		{
@@ -23,7 +35,9 @@ public class Product {
 			this.name = name;
 		}
 	}
-	
+	/*
+	 * validates and checks if weight meets business rules.
+	 */
 	public void checkWeight(double weight) {
 		if(weight<=0) {
 			this.weight = -1.0;
@@ -31,7 +45,9 @@ public class Product {
 			this.weight = weight;
 		}
 	}
-	
+	/*
+	 * validates and checks if cost meets business rules.
+	 */
 	public void checkCost(double cost) {
 		if(cost<=1) {
 			this.cost = -1.0;
@@ -52,7 +68,9 @@ public class Product {
 		return name + " " + weight + " " + cost;
 	}
 	
-	//required getters
+	/*
+	 * required getters
+	 */
 	public String getName()
 	{
 		return name;

@@ -1,5 +1,15 @@
 package miBayPackage;
-
+/**
+* <h1>PlatinumPackage</h1>
+* <p><b>This class creates a platinum package object  and
+*applies all the business rules and operations.
+*</b></p>
+* <p><b>References: None</b></p>
+*
+* @author Sovatharo Huy (s3783867)
+* @version 1.0
+* @since 2019-10-11
+*/
 import customer.Customer;
 import product.Product;
 import utilities.DateTime;
@@ -25,7 +35,9 @@ public class PlatinumPackage extends Package{
 			this.memberNumber = "N/A";
 		}
 	}
-	
+	/*
+	 * updates member number in a platinum package object
+	 */
 	public boolean updateMemberNumber(String memberNumber) {
 		if(this.memberNumber != null) {
 			if(memberNumber.length() == 10 && memberNumber.matches("[A-Z][0-9][A-Z][0-9][A-Z][0-9][A-Z][0-9][A-Z][0-9]")){
@@ -37,7 +49,9 @@ public class PlatinumPackage extends Package{
 		}
 		return true;
 	}
-	
+	/*
+	 * validates and checks if memberNumber is null or meets business rules.
+	 */
 	public boolean checkMemberNumber(String memberNumber) {
 		if(memberNumber == null || memberNumber.length() == 10 || memberNumber.isEmpty() ||
 				!(memberNumber.matches("[A-Z][0-9][A-Z][0-9][A-Z][0-9][A-Z][0-9][A-Z][0-9]"))){

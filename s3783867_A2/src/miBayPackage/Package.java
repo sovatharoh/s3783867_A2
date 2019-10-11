@@ -1,5 +1,15 @@
 package miBayPackage;
-
+/**
+* <h1>package</h1>
+* <p><b>This class creates an package object  and
+*applies all the business rules and operations.
+*</b></p>
+* <p><b>References: None</b></p>
+*
+* @author Sovatharo Huy (s3783867)
+* @version 1.0
+* @since 2019-10-11
+*/
 import customer.Customer;
 import product.Product;
 import utilities.DateTime;
@@ -21,7 +31,9 @@ public class Package {
 		this.date = date;
 	}
 	
-	
+	/*
+	 * adds a product to a package object
+	 */
 	public boolean addProduct(Product product) {
 		boolean valid = false;
 		if(products != null) {
@@ -48,6 +60,9 @@ public class Package {
 		}
 		return false;
 	}
+	/*
+	 * removes a product from a package object
+	 */
 	public boolean removeProduct(Product product) {
 		if(products != null) {
 			Product[] temp = new Product[products.length - 1];
@@ -63,9 +78,6 @@ public class Package {
 		}
 		return false;
 	}
-	public void setDate(DateTime date) {
-		this.date = date;
-	}
 
 	public String getDetails() {
 		StringBuilder sb = new StringBuilder();
@@ -79,10 +91,15 @@ public class Package {
 		}
 		return sb.toString();
 	}
+	/*
+	 * required getters and setters.
+	 */
 	public String toString() {
 		return "Customer: " + customer + "\nProduct: " + product;
 	}
-	
+	public void setDate(DateTime date) {
+		this.date = date;
+	}
 	public DateTime getDate() {
 		return date;
 	}

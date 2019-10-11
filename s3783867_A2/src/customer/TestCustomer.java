@@ -11,6 +11,9 @@ package customer;
 * @since 2019-10-11
 */
 public class TestCustomer {
+	/*
+	 * Testing valid and invalid customers
+	 */
 	public void testValidCustomer() {
 		Address a1 = new Address("83", "Dalgliesh Street", "South Yarra", "3141");
 		Address a2 = new Address("1", "Test Road", "Dandenong", "3175");

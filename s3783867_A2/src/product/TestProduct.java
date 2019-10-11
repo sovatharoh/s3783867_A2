@@ -11,6 +11,9 @@ package product;
 * @since 2019-10-11
 */
 public class TestProduct {
+	/*
+	 * checks valid and invalid instantiation of product
+	 */
 	public void testValid() {
 		Product p1 = new Product("Toilet Paper", 200.00, 15.00);
 		Product p2 = new Product("Cereal", 100.00, 5.00);
