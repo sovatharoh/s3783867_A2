@@ -1,5 +1,15 @@
 package product;
-
+/**
+* <h1>TestProduct</h1>
+* <p><b>This class tests valid construction of a product
+* and also tests for invalid constructions with null and empty string.
+* also tests the operations</b></p>
+* <p><b>References: None</b></p>
+*
+* @author Sovatharo Huy (s3783867)
+* @version 1.0
+* @since 2019-10-11
+*/
 public class TestProduct {
 	public void testValid() {
 		Product p1 = new Product("Toilet Paper", 200.00, 15.00);

@@ -2,20 +2,23 @@ package miBayPackage;
 
 import customer.Customer;
 import product.Product;
+import utilities.DateTime;
 
 public class Package {
 	private Customer customer;
 	private Product product;
 	private Product[] products = new Product[1];
+	private DateTime date;
 
 	public Package(Customer customer, Product product) {
 		this.customer = customer;
 		products[0] = product;
 	}
 	
-	public Package(Customer customer, Product[] products) {
+	public Package(Customer customer, Product[] products, DateTime date) {
 		this.customer = customer;
 		this.products = products;
+		this.date = date;
 	}
 	
 	
@@ -60,7 +63,10 @@ public class Package {
 		}
 		return false;
 	}
-	
+	public void setDate(DateTime date) {
+		this.date = date;
+	}
+
 	public String getDetails() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(String.format("%-15s %s\n", "Customer:\n ", customer.getDetails()));
@@ -68,10 +74,17 @@ public class Package {
 		for(int i = 0; i < products.length; i++) {
 			sb.append(String.format("%-15s %s\n", "Product:", products[i].getDetails()));
 		}
+		if(this.date != null) {
+			sb.append(String.format("%-15s %s\n", "Delivery Date:", date.getFormattedDate()));
+		}
 		return sb.toString();
 	}
 	public String toString() {
 		return "Customer: " + customer + "\nProduct: " + product;
+	}
+	
+	public DateTime getDate() {
+		return date;
 	}
 	
 	public Customer getCustomer() {

@@ -1,5 +1,15 @@
 package customer;
-
+/**
+* <h1>Address</h1>
+* <p><b>This class creates an address object 
+*in for use in the customer class constructor
+*</b></p>
+* <p><b>References: None</b></p>
+*
+* @author Sovatharo Huy (s3783867)
+* @version 1.0
+* @since 2019-10-11
+*/
 public class Address {
 	private String streetNumber;
 	private String streetName;

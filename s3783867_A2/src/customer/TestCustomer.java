@@ -1,5 +1,15 @@
 package customer;
-
+/**
+* <h1>TestCustomer</h1>
+* <p><b>This class tests valid construction of a customer
+* and also tests for invalid constructions with null and empty string.
+* also tests the operations</b></p>
+* <p><b>References: None</b></p>
+*
+* @author Sovatharo Huy (s3783867)
+* @version 1.0
+* @since 2019-10-11
+*/
 public class TestCustomer {
 	public void testValidCustomer() {
 		Address a1 = new Address("83", "Dalgliesh Street", "South Yarra", "3141");
