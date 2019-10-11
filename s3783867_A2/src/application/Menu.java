@@ -58,6 +58,12 @@ public class Menu {
 				case "PP":
 					createPackage();
 					break;
+				case "DA":
+					displayDeliveries();
+					break;
+				case "DS":
+					searchDeliveries();
+					break;
 				case "SA":
 					app.seedData();
 					break;
@@ -65,8 +71,7 @@ public class Menu {
 					System.out.println("Exiting Program ... Goodbye!");
 					break;
 				default:
-					System.out.println("Error, invalid option selected!");
-					System.out.println("Please try Again...");
+					System.out.println("");
 				}
 			}
 
@@ -149,50 +154,91 @@ public class Menu {
 		System.out.println("Enter Year:");
 		int year = console.nextInt();
 		DateTime date = new DateTime(day, month, year);
-		console.nextLine();
-	
-		String input1;
-		String choice1 = "";
-		Product[] tempProducts = app.getProductArr();
-		int tempProdCount = 0;
+		
+		String input;
+		Product[] tempProdArr = new Product[15];
 		do
 		{
+			int tempProdItemCount = 0;
 			System.out.println("Would you like to add another product? (Y/N)");
-			input1 = console.nextLine().toUpperCase();
+			console.nextLine();
+			input = console.nextLine().toUpperCase();
+
+			if (input.length() != 1)
+			{
+				System.out.println("Error - selection must be Y/N");
+			} else
 			{
 				System.out.println();
 
-				switch (input1)
+				switch (input)
 				{
 				case "Y":
 					printProductList();
-					console.hasNextInt();
-					int prodResponse1 = console.nextInt() - 1;
-					tempProducts[tempProdCount] = products[prodResponse1];
-					tempProdCount++;
+					int productPos = console.nextInt() - 1;
+					tempProdArr[tempProdItemCount] = products[productPos];
+					tempProdItemCount++;
 					break;
 				case "N":
 					break;
 				default:
-					System.out.println("Error, invalid option selected!");
-					System.out.println("Please try Again...");
+					System.out.println("");
 				}
 			}
-
-		} while (choice1 != "N");
+			}while (!(input.equals("N")));
+		
 		System.out.println("Is this a Platinum Package? (Y/N)");
-		String platResponse = console.nextLine();
+		String platResponse = console.nextLine().toUpperCase();
 			if(platResponse.equals("Y")) {
 				System.out.println("Please input your member number:");
 				String memberNumber = console.nextLine();
-				app.createPlatPackage(customers[custResponse], products[prodResponse], memberNumber,
-						date, tempProducts);
+				app.createPlatPackage(customers[custResponse], products[prodResponse], memberNumber, date, tempProdArr);
 				System.out.println(products[prodResponse].getName() + " was succesfully added to the order");
 			} else {
-				app.createPackage(customers[custResponse], products[prodResponse], date, tempProducts);
+				app.createPackage(customers[custResponse], products[prodResponse], date, tempProdArr);
 				System.out.println(products[prodResponse].getName() + " was succesfully added to the order");
-		}
+			}
 }
+	
+	public void displayDeliveries() {
+		System.out.println("Enter sort order (A/D):");
+		String choice = console.nextLine().toUpperCase();
+		switch(choice) {
+			case "A":
+				
+		}
+	}
+	public void searchDeliveries() {
+		System.out.println("Enter Day:");
+		int day = console.nextInt();
+		System.out.println("Enter Month:");
+		int month = console.nextInt();
+		System.out.println("Enter Year:");
+		int year = console.nextInt();
+		DateTime searchDate = new DateTime(day, month, year);
+		miBayPackage.Package[] packageArr = app.getPackagesArr();
+		PlatinumPackage[] platPackageArr = app.getPlatinumPackageArr();
+		
+		for(int i = 0; i < packageArr.length; i++) {
+			if(packageArr[i] != null) {
+			if(packageArr[i].getDate().getFormattedDate().equals(searchDate.getFormattedDate())){
+				System.out.println("----------------------------");
+				System.out.println(packageArr[i].getDetails());
+			}
+			}
+		}
+		
+		for(int i = 0; i < platPackageArr.length; i++) {
+			if(platPackageArr[i] != null) {
+			if(platPackageArr[i].getDate().getFormattedDate().equals(searchDate.getFormattedDate())){
+				System.out.println("----------------------------");
+				System.out.println(platPackageArr[i].getDetails());
+			}
+			}
+		}
+		
+	}
+	
 	public void printCustomerList() {
 		Customer[] customers = app.getCustomers();
 		if(customers[0] == null) {
@@ -209,6 +255,7 @@ public class Menu {
 		}
 		
 	}
+	
 	public void printProductList(){
 		Product[] products = app.getProductArr();
 		if(products[0] == null) {

@@ -49,7 +49,7 @@ public class PlatinumPackage extends Package{
 	
 	public String getDetails() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("%-15s %s\n", "Customer:\n ", this.getCustomer().getDetails()));
+		sb.append(String.format("%-15s %s\n", "\nCustomer:\n ", this.getCustomer().getDetails()));
 		sb.append(String.format("%-15s ", "Product:\n "));
 		for(int i = 0; i < this.getProducts().length; i++) {
 			sb.append(String.format("%-15s %s\n", "Product:", this.getProducts()[i].getDetails()));

@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Scanner;
+
 import application.Menu;
 import application.MiBayApplication;
 import customer.TestCustomer;
@@ -20,10 +22,11 @@ public class Driver {
 		TestPackage testPackage = new TestPackage();
 		testPackage.testPackageValid();
 		testPackage.testInvalidPackage();
-		
+		Scanner scan = new Scanner(System.in);
+	
 		MiBayApplication app = new MiBayApplication();
 		app.showMenu();
-		
+	
 	}
 
 }

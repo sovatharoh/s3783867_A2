@@ -47,20 +47,23 @@ public class MiBayApplication {
 			return  productArr[itemCountProd-1].getName() +" was succesfully added to the system";
 	}
 	
-	public void createPackage(Customer customer, Product product, DateTime date, Product[] tempProducts) {
+	public void createPackage(Customer customer, Product product, DateTime date, Product[] tempProdArr) {
 		packageArr[itemCountPack] = new Package(customer, product);
 		packageArr[itemCountPack].setDate(date);
-		for(int i=0; i < tempProducts.length; i++) {
-			packageArr[itemCountPack].addProduct(tempProducts[i]);
+		for(int i=0; i < tempProdArr.length; i++) {
+			if(tempProdArr[i] != null) {
+				packageArr[itemCountPack].addProduct(tempProdArr[i]);
+			}
 		}
 		itemCountPack++;
 	}
-	public void createPlatPackage(Customer customer, Product product, String memberNumber, 
-			DateTime date, Product[] tempProducts) {
+	public void createPlatPackage(Customer customer, Product product, String memberNumber, DateTime date, Product[] tempProdArr) {
 		platPackage[itemCountPlat] = new PlatinumPackage(customer, product, memberNumber);
 		platPackage[itemCountPlat].setDate(date);
-		for(int i=0; i < tempProducts.length; i++) {
-			platPackage[itemCountPlat].addProduct(tempProducts[i]);
+		for(int i=0; i < tempProdArr.length; i++) {
+			if(tempProdArr[i] != null) {
+				platPackage[itemCountPlat].addProduct(tempProdArr[i]);
+			}
 		}
 		itemCountPlat++;
 	}

@@ -69,7 +69,7 @@ public class Package {
 
 	public String getDetails() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("%-15s %s\n", "Customer:\n ", customer.getDetails()));
+		sb.append(String.format("%-15s %s\n", "\nCustomer:\n ", customer.getDetails()));
 		sb.append(String.format("%-15s ", "Product:\n "));
 		for(int i = 0; i < products.length; i++) {
 			sb.append(String.format("%-15s %s\n", "Product:", products[i].getDetails()));
