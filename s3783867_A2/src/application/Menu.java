@@ -125,9 +125,8 @@ public class Menu {
 			String result = app.createProduct(name, weight, cost);
 			System.out.println(result);
 			}
-	
 	/*
-	 * Creates package and platinum package in the system.
+	 * Creates a package or a platinum package in the system.
 	 */
 	private void createPackage() {
 		Customer[] customers = app.getCustomers();
